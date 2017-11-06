@@ -1,3 +1,5 @@
+require 'mercury_story_cacher'
+
 class Story < ActiveRecord::Base
   belongs_to :user
   belongs_to :merged_into_story,
@@ -331,7 +333,7 @@ class Story < ActiveRecord::Base
 
   def fetch_story_cache!
     if self.url.present?
-      self.story_cache = StoryCacher.get_story_text(self)
+      self.story_cache = ::MercuryStoryCacher.get_story_text(self)
     end
   end
 
