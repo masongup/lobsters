@@ -18,5 +18,8 @@ class MercuryStoryCacher
     html_story_body = json_response['content']
     nokogiri_story = Nokogiri::HTML(html_story_body)
     nokogiri_story.text
+  rescue => e
+    Rails.logger.error "Hit exception #{e.class} while trying to retrieve text of story #{story.title}"
+    nil
   end
 end
